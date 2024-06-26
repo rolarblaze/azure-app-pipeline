@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Docker Build'){
             steps{
-                sh 'docker compose build'
+                sh 'docker-compose build'
             }
         }
         stage('Run Unit Test'){
@@ -26,7 +26,7 @@ pipeline{
             echo "Tests failed :("
         }
         always {
-            sh 'docker compose down'
+            sh 'docker-compose down'
         }
     }
 }
