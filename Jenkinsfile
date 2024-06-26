@@ -8,8 +8,26 @@ pipeline{
         }
         stage('Docker Build'){
             steps{
-                sh 'docker-compose build'
+                sh 'docker compose build'
             }
+        }
+        stage('Run Unit Test'){
+            steps{
+                sh 'pytest ./test/sample.py'
+            }
+        }
+        post {
+            success {
+                echo "Test passed! :)"
+            }
+            failure {
+                echo "Tests failed :("
+            }
+        }
+    }
+    post {
+        always {
+            sh 'docker compose down'
         }
     }
 }
