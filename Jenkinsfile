@@ -16,16 +16,15 @@ pipeline{
                 sh 'pytest ./test/sample.py'
             }
         }
-        post {
-            success {
-                echo "Test passed! :)"
-            }
-            failure {
-                echo "Tests failed :("
-            }
-        }
+        
     }
-    post {
+    post{
+        success{
+            echo "Test passed! :)"
+        }
+        failure{
+            echo "Tests failed :("
+        }
         always {
             sh 'docker compose down'
         }
